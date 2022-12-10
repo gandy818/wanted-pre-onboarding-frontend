@@ -1,0 +1,17 @@
+.todo{
+  .addTodo{
+    display: flex;
+  }
+  .todoList{
+    display: flex;
+  }
+  .btn{
+    border: 1px solid #222222;
+    cursor: pointer;
+    color: #ffffff;
+    background-color : #000000;
+    padding: 10px;
+    margin: 1px;
+    border-radius: 5px;
+  }
+}
