@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"
 import "../styled/main.scss"
+import { useNavigate } from "react-router-dom";
 
 function Main(){
   const [signInEmail, setSignInEmail] = useState('');
@@ -9,9 +10,10 @@ function Main(){
 
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPw, setSignUpPw] = useState('');
-  const [signUpValid, setSignUpValid] = useState(false);
+  const [signUpValid, setSignUpValid] = useState(false); 
 
   const emailCheck = /\S+@\S/;
+  const navigate = useNavigate();
   
   const onChangedSignInEmail = (e) => {
     setSignInEmail(e.target.value);
@@ -39,30 +41,25 @@ function Main(){
 
   const signIn = async () => {
    await Axios.post("/auth/signin", {
-      signInEmail, signInPw
+      email : signInEmail,
+      password : signInPw
     }).then((res) => {
-      console.log(res)
+      if(res.status === 200) {
+        localStorage.setItem("access_token", res.data.access_token)
+        alert("로그인 성공")
+        navigate("/todo")
+      }
+
     }).catch((err) => {
       console.log(err)
     })
   };
 
-  const signUp = () => {
-    // axios.post("https://pre-onboarding-selection-task.shop/auth/signup", {
-    //   signUpEmail, signUpPw
-    // }, {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   }
-    // }).then((res) => {
-    //   console.log(res)
-    // }).catch((err) => {
-    //   console.log(err)
-    // })
-
+  const signUp = async () => {
     if (signUpValid) {
-      Axios.post("/auth/signup", {
-        signUpEmail, signUpPw
+      await Axios.post("/auth/signup", {
+        email : signUpEmail,
+        password : signUpPw
       }).then((res) => {
         if(res.status === 201) {
           alert("회원가입이 완료되었습니다.")
