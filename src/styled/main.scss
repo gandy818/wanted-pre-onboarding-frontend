@@ -1,0 +1,23 @@
+.main{
+  .mainWrapper{
+    display: flex;
+  }
+  .signinSection{
+    padding: 20px;
+    border-right: 3px solid #222222;
+  }
+  .signupSection{
+    padding: 20px;
+  }
+  .btn{
+    border: 1px solid #222222;
+    margin-top: 20px;
+  }
+  .notActive{
+    
+  }
+  .isActive{
+    cursor: pointer; 
+    color: red;
+  }
+}
