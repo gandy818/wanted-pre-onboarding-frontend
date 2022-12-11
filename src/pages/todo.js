@@ -55,7 +55,17 @@ function Todo () {
       todo, isCompleted
     })
     .then((res) => {
-      console.log(res)
+      if(res.status === 200){
+        // getTodo로 갱신된 리스트 뿌려주기
+        Axios.get("/todos")
+        .then((res) => {
+          if(res.status === 200) {
+            setTodo(res.data)
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
     })
     .catch((err) => {
       console.log(err)
