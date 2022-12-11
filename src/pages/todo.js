@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import axios from "axios"
-import "../styled/todo.scss"
+import React, { useCallback, useEffect, useState } from "react";
+import axios from "axios";
+import "../styled/todo.scss";
+import AddTodo from "../components/addTodo";
+import TodoList from "../components/todoList";
+import { useNavigate } from "react-router";
 
 function Todo () {
-  const [todo, setTodo] = useState('공부하기');
+  const [todo, setTodo] = useState([]);
   const [readOnly, setReadOnly] = useState(true)
+  const navigate = useNavigate()
 
   const Axios = axios.create({
     baseURL: "http://localhost:8000/",
@@ -14,49 +18,55 @@ function Todo () {
       "Authorization": "Bearer " + localStorage.getItem("access_token")
     }
   });
+  
+  //토큰이 없을 시 메인화면으로 리다이렉트
+  useEffect(() => {
+    if(!localStorage.getItem("access_token")){
+      navigate("/")
+    }
+  }, []);
 
-  const getTodo = (e) => {
-    setTodo(e.target.value)
-  };
-
-  const createTodo = () => {
-    Axios.post("/todos", {
-      todo : "string"
-    }).then((res) => {
-      console.log(res)
+  //초기 리스트 뿌려주기
+  useEffect(() => {
+    Axios.get("/todos")
+    .then((res) => {
+      if(res.status === 200) {
+        setTodo(res.data)
+      }
     }).catch((err) => {
       console.log(err)
     })
-  }
+  }, [])
 
-  const modifyTodo = () => {
-    setReadOnly(false)
-  }
+  //할일 추가하기
+  const createTodo = (text) => {
+    Axios.post("/todos", {
+      todo : text
+    }).then((res) => {
+      setTodo((preTodos) => [...preTodos, res.data])
+    }).catch((err) => {
+      console.log(err)
+    })
+  };
 
-
-  Axios.get("/todos")
+  //할일 삭제하기
+  const deleteTodo = (id) => {
+    Axios.delete("/todos/" + {id})
     .then((res) => {
       console.log(res)
-  }).catch((err) => {
-    console.log(err)
-  })
-
-
+      if(res.status === 204) {
+        setTodo(todo.filter((todo)=> { todo.id !== id }))
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+  };
 
   return (
     <div className="todo">
-      <div className="header">TODO</div>
-      <div className="addTodo">
-        <input type="text"></input>
-        <div onClick={createTodo}>추가하기</div>
-      </div>
-      <div className="todoList">
-        <div>1</div>
-        <div><input type="checkbox"></input></div>
-        <input className="" type="text" readOnly={readOnly} value={todo} onChange={getTodo}></input>
-        <div className="btn" onClick={modifyTodo}>수정</div>
-        <div className="btn">삭제</div>
-      </div>
+      <div className="header" onClick={deleteTodo}>TODO</div>
+      <AddTodo onAddTodo={createTodo}></AddTodo>
+      <TodoList todos={todo}></TodoList>
     </div>
   )
 }
