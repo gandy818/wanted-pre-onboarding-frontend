@@ -18,7 +18,7 @@ function Todo () {
       "Authorization": "Bearer " + localStorage.getItem("access_token")
     }
   });
-  
+
   //토큰이 없을 시 메인화면으로 리다이렉트
   useEffect(() => {
     if(!localStorage.getItem("access_token")){
@@ -49,13 +49,35 @@ function Todo () {
     })
   };
 
-  //할일 삭제하기
-  const deleteTodo = (id) => {
-    Axios.delete("/todos/" + {id})
+  //할일 수정하기
+  const updateTodo = (id, todo, isCompleted) => {
+    Axios.put("/todos/" + id, {
+      todo, isCompleted
+    })
     .then((res) => {
       console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  };
+
+  //할일 삭제하기
+  const deleteTodo = (id) => {
+    Axios.delete("/todos/" + id)
+    .then((res) => {
       if(res.status === 204) {
-        setTodo(todo.filter((todo)=> { todo.id !== id }))
+
+        // getTodo로 갱신된 리스트 뿌려주기
+        Axios.get("/todos")
+        .then((res) => {
+          if(res.status === 200) {
+            setTodo(res.data)
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+
       }
     }).catch((err) => {
       console.log(err)
@@ -66,7 +88,7 @@ function Todo () {
     <div className="todo">
       <div className="header" onClick={deleteTodo}>TODO</div>
       <AddTodo onAddTodo={createTodo}></AddTodo>
-      <TodoList todos={todo}></TodoList>
+      <TodoList todos={todo} onUpdateTodo={updateTodo} onDeleteTodo={deleteTodo}></TodoList>
     </div>
   )
 }
