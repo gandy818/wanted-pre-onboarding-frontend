@@ -35,9 +35,8 @@ function Main(){
       email, password
     }).then((res) => {
       if(res.status === 201) {
-        alert("회원가입이 완료되었습니다.")
-        // email = ""
-        // password = ""
+        alert("회원가입이 완료되었습니다.");
+        window.location.reload();
       }
     }).catch((err) => {
       console.log(err)

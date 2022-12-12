@@ -29,7 +29,6 @@ function SignUp({onSignUp}) {
     if(regEmailCheck.test(email) === true && password.length >= 8) {
       return setSignUpValid(true);
     } else return setSignUpValid(false);
-
   };
 
   return (
