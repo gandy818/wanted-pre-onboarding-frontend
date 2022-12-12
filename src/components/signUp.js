@@ -11,7 +11,7 @@ function SignUp({onSignUp}) {
 
   const onChange = (type, e) => {
     const value = e.target.value
-
+    
     switch(type) {
       case 'email' : 
         setEmail(value);
@@ -20,7 +20,6 @@ function SignUp({onSignUp}) {
         setPassword(value);
         break;
     }
-
   }
 
   const checkValid = () => {

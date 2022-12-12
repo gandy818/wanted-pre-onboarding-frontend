@@ -1,15 +1,16 @@
 .todo{
-  .todoList{
-    display: flex;
+  text-align: center;
+  padding: 20px;
+  .header{
+    font-size: 20px;
+    font-weight: bold;
   }
   .btn{
-    border: 1px solid #222222;
+    border: 1px solid #32502E;
     cursor: pointer;
     color: #ffffff;
-    background-color : #000000;
+    background-color : #32502E;
     padding: 10px;
-    margin: 1px;
     border-radius: 5px;
   }
-
 }

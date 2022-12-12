@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styled/todo.scss";
 import AddTodo from "../components/addTodo";
@@ -7,12 +7,11 @@ import { useNavigate } from "react-router";
 
 function Todo () {
   const [todo, setTodo] = useState([]);
-  const [readOnly, setReadOnly] = useState(true)
   const navigate = useNavigate()
 
   const Axios = axios.create({
-    baseURL: "http://localhost:8000/",
-    // baseURL: "https://pre-onboarding-selection-task.shop/",
+    baseURL: "http://localhost:8000/todos",
+    // baseURL: "https://pre-onboarding-selection-task.shop/todos",
     headers: {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + localStorage.getItem("access_token")
@@ -26,9 +25,8 @@ function Todo () {
     }
   }, []);
 
-  //초기 리스트 뿌려주기
   useEffect(() => {
-    Axios.get("/todos")
+    Axios.get()
     .then((res) => {
       if(res.status === 200) {
         setTodo(res.data)
@@ -38,9 +36,8 @@ function Todo () {
     })
   }, [])
 
-  //할일 추가하기
   const createTodo = (text) => {
-    Axios.post("/todos", {
+    Axios.post("", {
       todo : text
     }).then((res) => {
       setTodo((preTodos) => [...preTodos, res.data])
@@ -49,15 +46,13 @@ function Todo () {
     })
   };
 
-  //할일 수정하기
   const updateTodo = (id, todo, isCompleted) => {
-    Axios.put("/todos/" + id, {
+    Axios.put("/" + id, {
       todo, isCompleted
     })
     .then((res) => {
       if(res.status === 200){
-        // getTodo로 갱신된 리스트 뿌려주기
-        Axios.get("/todos")
+        Axios.get()
         .then((res) => {
           if(res.status === 200) {
             setTodo(res.data)
@@ -74,12 +69,10 @@ function Todo () {
 
   //할일 삭제하기
   const deleteTodo = (id) => {
-    Axios.delete("/todos/" + id)
+    Axios.delete("/" + id)
     .then((res) => {
       if(res.status === 204) {
-
-        // getTodo로 갱신된 리스트 뿌려주기
-        Axios.get("/todos")
+        Axios.get()
         .then((res) => {
           if(res.status === 200) {
             setTodo(res.data)
@@ -87,7 +80,6 @@ function Todo () {
         }).catch((err) => {
           console.log(err)
         })
-
       }
     }).catch((err) => {
       console.log(err)
@@ -96,7 +88,7 @@ function Todo () {
 
   return (
     <div className="todo">
-      <div className="header" onClick={deleteTodo}>TODO</div>
+      <div className="header">TODO</div>
       <AddTodo onAddTodo={createTodo}></AddTodo>
       <TodoList todos={todo} onUpdateTodo={updateTodo} onDeleteTodo={deleteTodo}></TodoList>
     </div>

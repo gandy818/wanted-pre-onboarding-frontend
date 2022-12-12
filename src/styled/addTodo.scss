@@ -1,3 +1,21 @@
 .addTodo{
   display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  .inputWrapper{
+   input{
+    width: 330px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px;
+    padding-left: 10px;
+    border: 1px solid #CCD6A6;
+    color: #32502E;
+    &:focus{
+      outline: none;
+    }
+   } 
+  }
+
 }

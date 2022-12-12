@@ -15,8 +15,8 @@ function AddTodo({onAddTodo}) {
 
   return (
     <div className="addTodo">
-      <div><input type="text" value={text} onChange={onChange}></input></div>
-      <div onClick={addTodo}>추가하기</div>
+      <div className="inputWrapper"><input type="text" value={text} onChange={onChange}></input></div>
+      <div className="btn" onClick={addTodo}>추가하기</div>
     </div>
   )
 }
