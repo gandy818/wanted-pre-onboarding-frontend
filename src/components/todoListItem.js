@@ -60,7 +60,7 @@ function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
     <div className="todoListItem">
       <input type="checkbox" id={"checkbox" + todo.id} checked={completed} disabled={disabled} onChange={checkboxStatus}></input>
       <label htmlFor={"checkbox" + todo.id}></label>
-      <input className={(todo.isCompleted) ? "done" : ""} type="text" value={value} readOnly={readOnly} onChange={onChange} onKeyUp={onKeyUp}></input>
+      <input className={(completed) ? "done" : ""} type="text" value={value} readOnly={readOnly} onChange={onChange} onKeyUp={onKeyUp}></input>
       <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={onUpdateMode}>수정</div>
       <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={deleteTodo}>삭제</div>
       <div className={"btn light" + (showUpdateBtn ? " isShow" : " isHide")} onClick={updateTodo}>완료</div>
