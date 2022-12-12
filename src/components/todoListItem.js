@@ -40,11 +40,15 @@ function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
   };
 
   const updateTodo = () => {
-    onUpdateTodo(id, value, completed);
-    setReadOnly(!readOnly);
-    setDisabled(!disabled);
-    setShowDefaultBtn(true);
-    setShowUpdateBtn(false);
+    if(value === "") {
+      alert("수정할 내용을 입력하세요")
+    }else {
+      onUpdateTodo(id, value, completed);
+      setReadOnly(!readOnly);
+      setDisabled(!disabled);
+      setShowDefaultBtn(true);
+      setShowUpdateBtn(false);
+    }
   };
 
   const cancleTodo = () => {

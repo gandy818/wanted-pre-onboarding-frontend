@@ -9,17 +9,21 @@ function AddTodo({onAddTodo}) {
   }, []);
 
   const onKeyUp = () => {
-    const keyCode = window.event.keyCode
+    const keyCode = window.event.keyCode;
 
     if(keyCode === 13) {
       addTodo();
     }
   }
 
-  const addTodo = useCallback(() => {
-    onAddTodo(text);
-    setText('')
-  })
+  const addTodo = () => {
+    if(text === "") {
+     alert("추가할 내용을 입력하세요") 
+    }else {
+      onAddTodo(text);
+      setText("");
+    }
+  }
 
   return (
     <div className="addTodo">
