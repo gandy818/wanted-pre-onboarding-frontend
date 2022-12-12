@@ -12,5 +12,21 @@
     background-color : #32502E;
     padding: 10px;
     border-radius: 5px;
+    &:hover{
+      background-color: #406343;
+    }
   }
+  input:not([type="checkbox"]){
+    width: 330px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px;
+    padding-left: 10px;
+    border: 1px solid #CCD6A6;
+    color: #32502E;
+    &:focus{
+      outline: none;
+    }
+   } 
 }

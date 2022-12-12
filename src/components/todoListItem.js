@@ -6,40 +6,55 @@ function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
   const [completed, setCompleted] = useState(todo.isCompleted)
   const [readOnly, setReadOnly] = useState(true);
   const [disabled, setDisabled] = useState(true);
+  const [showDefaultBtn, setShowDefaultBtn] = useState(true);
+  const [showUpdateBtn, setShowUpdateBtn] = useState(false);
+
   const id = todo.id;
 
   const onChange = (e) => {
     setValue(e.target.value);
   };
 
-  const updateTodo = () => {
-    onUpdateTodo(id, value, completed);
-    setReadOnly(!readOnly);
-    setDisabled(!disabled);
+  const checkboxStatus = (e) => {
+    setCompleted(e.target.checked)
   };
 
   const onUpdateMode = () => {
     setReadOnly(!readOnly);
     setDisabled(!disabled);
+
+    setShowDefaultBtn(false);
+    setShowUpdateBtn(true);
   };
 
   const deleteTodo = async () => {
     onDeleteTodo(id);
   };
 
-  const checkboxStatus = (e) => {
-    setCompleted(e.target.checked)
+  const updateTodo = () => {
+    onUpdateTodo(id, value, completed);
+    setReadOnly(!readOnly);
+    setDisabled(!disabled);
+    setShowDefaultBtn(true);
+    setShowUpdateBtn(false);
   };
+
+  const cancleTodo = () => {
+    //바꾸기 전의 토글값과 내용값 가져와야함
+    setShowDefaultBtn(true);
+    setShowUpdateBtn(false);
+  }
 
 
   return (
     <div className="todoListItem">
-      <input type="checkbox" defaultChecked={completed} disabled={disabled} onChange={checkboxStatus}></input>
+      <input type="checkbox" id={"checkbox" + todo.id} defaultChecked={completed} disabled={disabled} onChange={checkboxStatus}></input>
+      <label htmlFor={"checkbox" + todo.id}></label>
       <input type="text" value={value} readOnly={readOnly} onChange={onChange}></input>
-      <div onClick={onUpdateMode}>수정</div>
-      <div onClick={deleteTodo}>삭제</div>
-      <div onClick={updateTodo}>완료</div>
-      <div>취소</div>
+      <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={onUpdateMode}>수정</div>
+      <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={deleteTodo}>삭제</div>
+      <div className={"btn" + (showUpdateBtn ? " isShow" : " isHide")} onClick={updateTodo}>완료</div>
+      <div className={"btn" + (showUpdateBtn ? " isShow" : " isHide")} onClick={cancleTodo}>취소</div>
     </div>
   );
 }
