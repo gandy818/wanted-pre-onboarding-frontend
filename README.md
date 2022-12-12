@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 프론트엔드 선발 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+프로젝트의 실행 방법
 
-## Available Scripts
+1. ### 프로젝트의 setup을 위해 `npm install`을 입력합니다.
+2. ### 설치가 완료 되면 `npm start`를 입력하면 로컬서버 3000번에서 실행이 됩니다.
 
-In the project directory, you can run:
+## 1. 로그인 / 회원가입
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+이메일은 반드시 "@"를 포함해야하고 비밀번호는 8자 이상이 되어야 버튼이 활성화가 됩니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![signup](https://user-images.githubusercontent.com/67881881/207073845-4542732f-9ba5-4ead-ab5f-663cac274568.gif)
 
-### `npm test`
+이미 가입이 되어있는 이메일로 회원가입을 시도할 시 동일한 이메일이 존재한다는 에러창이 나옵니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+회원가입이 완료되면 해당 이메일과 비밀번호로 로그인을 할 수 있습니다.
 
-### `npm run build`
+[데모영상]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+가입되어 있지 않은 이메일로 로그인을 하거나 이메일과 비밀번호가 일치하지 않을 경우 각각 에러창이 나옵니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+로그인에 성공하면 JWT 토큰을 받고, 이 토큰은 로컬스토리지에 저장됩니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+화면은 /todo 경로로 이동합니다.
 
-### `npm run eject`
+[데모영상]
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+로컬스토리지에 토큰이 있는 상태로 / 페이지에 접근하면 /todo 경로로 이동합니다.
+반대로 토큰이 없는 경우 /todo 페이지에 접근하면 / 경로로 이동합니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 2. 투두 리스트
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
