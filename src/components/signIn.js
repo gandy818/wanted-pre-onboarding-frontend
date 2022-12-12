@@ -22,10 +22,10 @@ function SignIn({onSignIn}) {
         setPassword(value);
         break;
     }
-    //유효성검사
     checkValid(type, e)
   }
-
+  
+  //유효성검사
   const checkValid = (type, e) => {
     const regularEmailCheck = /\S+@\S/;
     const value = e.target.value;
