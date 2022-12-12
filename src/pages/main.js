@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios"
 import "../styled/main.scss"
 import { useNavigate } from "react-router-dom";
+import SignIn from "../components/signIn";
 
 function Main(){
   const [signInEmail, setSignInEmail] = useState('');
@@ -39,7 +40,7 @@ function Main(){
     }
   });
 
-  const signIn = async () => {
+  const signIn = async (email, password) => {
    await Axios.post("/auth/signin", {
       email : signInEmail,
       password : signInPw
@@ -89,21 +90,7 @@ function Main(){
   return (
     <div className="main">
       <div className="mainWrapper">
-        <div className="signinSection">
-          <div className="title">로그인</div>
-          <div className="subTitle">회원가입을 하셨다면-</div>
-          <div>
-            <div>이메일</div>
-            <div className="subTitle">이메일에는 @가 반드시 포함되어야 합니다.</div>
-            <div><input type="text" value={signInEmail} onChange={onChangedSignInEmail} onKeyUp={CheckSignInValid}></input></div>
-          </div>
-          <div>
-            <div>비밀번호</div>
-            <div className="subTitle">비밀번호는 8자 이상이여야합니다.</div>
-            <div><input type="password" value={signInPw} onChange={onChangedSignInPw} onKeyUp={CheckSignInValid}></input></div>
-          </div>
-          <div onClick={signIn} className={"btn" + (signInValid ? " isActive" : " notActive")}>로그인 하기</div>
-        </div>
+        <SignIn onSignIn={signIn}></SignIn>
         <div className="signupSection">
           <div className="title">회원가입</div>
           <div className="subTitle">아직 회원이 아니시라면- </div>
