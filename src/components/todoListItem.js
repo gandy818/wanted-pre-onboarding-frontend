@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styled/todoListItem.scss";
 
-function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
+function TodoListItem({ todo, onGetTodo, onUpdateTodo, onDeleteTodo }) {
   const [value, setValue] = useState(todo.todo);
   const [completed, setCompleted] = useState(todo.isCompleted)
   const [readOnly, setReadOnly] = useState(true);
@@ -27,7 +27,7 @@ function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
     setShowUpdateBtn(true);
   };
 
-  const deleteTodo = async () => {
+  const deleteTodo = () => {
     onDeleteTodo(id);
   };
 
@@ -40,17 +40,23 @@ function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
   };
 
   const cancleTodo = () => {
-    setValue(todo.todo);
-    setCompleted(todo.isCompleted);
+    console.log(todo.isCompleted)
+    setCompleted(todo.isCompleted) //checkbox
     console.log(completed)
+
+    setValue(todo.todo); //text
+
+    // onGetTodo();
+
+    setReadOnly(!readOnly);
+    setDisabled(!disabled);
     setShowDefaultBtn(true);
     setShowUpdateBtn(false);
   }
 
-
   return (
     <div className="todoListItem">
-      <input type="checkbox" id={"checkbox" + todo.id} defaultChecked={completed} disabled={disabled} onChange={checkboxStatus}></input>
+      <input type="checkbox" id={"checkbox" + todo.id} checked={completed} disabled={disabled} onChange={checkboxStatus}></input>
       <label htmlFor={"checkbox" + todo.id}></label>
       <input className={(todo.isCompleted) ? "done" : ""} type="text" value={value} readOnly={readOnly} onChange={onChange}></input>
       <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={onUpdateMode}>수정</div>

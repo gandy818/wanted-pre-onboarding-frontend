@@ -26,15 +26,20 @@ function Todo () {
   }, []);
 
   useEffect(() => {
+    getTodo();
+  }, [])
+
+  const getTodo = () => {    
     Axios.get()
     .then((res) => {
       if(res.status === 200) {
+        setTodo([])
         setTodo(res.data)
       }
     }).catch((err) => {
       console.log(err)
     })
-  }, [])
+  }
 
   const createTodo = (text) => {
     Axios.post("", {
@@ -52,14 +57,7 @@ function Todo () {
     })
     .then((res) => {
       if(res.status === 200){
-        Axios.get()
-        .then((res) => {
-          if(res.status === 200) {
-            setTodo(res.data)
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
+        getTodo();
       }
     })
     .catch((err) => {
@@ -67,19 +65,11 @@ function Todo () {
     })
   };
 
-  //할일 삭제하기
   const deleteTodo = (id) => {
     Axios.delete("/" + id)
     .then((res) => {
       if(res.status === 204) {
-        Axios.get()
-        .then((res) => {
-          if(res.status === 200) {
-            setTodo(res.data)
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
+        getTodo();
       }
     }).catch((err) => {
       console.log(err)
@@ -90,7 +80,7 @@ function Todo () {
     <div className="todo">
       <div className="header">TODO</div>
       <AddTodo onAddTodo={createTodo}></AddTodo>
-      <TodoList todos={todo} onUpdateTodo={updateTodo} onDeleteTodo={deleteTodo}></TodoList>
+      <TodoList todos={todo} onGetTodo={getTodo} onUpdateTodo={updateTodo} onDeleteTodo={deleteTodo}></TodoList>
     </div>
   )
 }
