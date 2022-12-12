@@ -10,8 +10,8 @@ function Todo () {
   const navigate = useNavigate()
 
   const Axios = axios.create({
-    baseURL: "http://localhost:8000/todos",
-    // baseURL: "https://pre-onboarding-selection-task.shop/todos",
+    // baseURL: "http://localhost:8000/todos",
+    baseURL: "https://pre-onboarding-selection-task.shop/todos",
     headers: {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + localStorage.getItem("access_token")
