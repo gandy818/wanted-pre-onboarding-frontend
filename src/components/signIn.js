@@ -4,8 +4,6 @@ function SignIn({onSignIn}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signInValid, setSignInValid] = useState('');
-  const [emailValid, setEmailValid] = useState(false);
-  const [passwordValid, setpasswordValid] = useState(false);
 
   const userSignIn = () => {
     onSignIn(email, password)
@@ -26,27 +24,14 @@ function SignIn({onSignIn}) {
   }
   
   //유효성검사
-  const checkValid = (type, e) => {
-    const regularEmailCheck = /\S+@\S/;
-    const value = e.target.value;
+  const checkValid = () => {
+    const regEmailCheck = /\S+@\S/;
 
-    switch(type) {
-      case 'email' : 
-        if(regularEmailCheck.test(value) === true){
-          setEmailValid(true)
-        }
-        break;
-      case 'password' : 
-        if(password.length >= 8) {
-          setpasswordValid(true)
-        }
-        break;
-    }
-    if(emailValid && passwordValid) {
-      return setSignInValid(true)
-    } 
-    else return setSignInValid(false)
-  }
+    if(regEmailCheck.test(email) === true && password.length >= 8) {
+      return setSignInValid(true);
+    } else return setSignInValid(false);
+
+  };
 
   return (
     <div className="signinSection">
@@ -55,12 +40,12 @@ function SignIn({onSignIn}) {
       <div>
         <div>이메일</div>
         <div className="subTitle">이메일에는 @가 반드시 포함되어야 합니다.</div>
-        <div><input type="text" value={email} onChange={(e) => {onChange('email', e)}}></input></div>
+        <div><input type="text" value={email} onChange={(e) => {onChange('email', e)}} onKeyUp={checkValid}></input></div>
       </div>
       <div>
         <div>비밀번호</div>
         <div className="subTitle">비밀번호는 8자 이상이여야합니다.</div>
-        <div><input type="password" value={password} onChange={(e) => {onChange('password', e)}}></input></div>
+        <div><input type="password" value={password} onChange={(e) => {onChange('password', e)}} onKeyUp={checkValid}></input></div>
       </div>
       <div onClick={userSignIn} className={"btn" + (signInValid ? " isActive" : " notActive")}>로그인 하기</div>
     </div>
