@@ -8,6 +8,10 @@
     background-color: #ECE7B4;
     border-radius: 35px;
     width: 280px;
+    &.done{
+      background-color: #cfcfcf;
+      text-decoration: line-through; 
+    }
   }
   input[type="checkbox"]{
     display: none;
@@ -25,16 +29,22 @@
     width: 10px;
     height: 10px;
     border-radius: 35px;
-    background-color: #32502E;
     text-align: center;
     position: absolute;
     left: 5px;
     top: 5px;
+    background-color: #32502E;
   }
   .btn{
     padding: 6px 8px;
     font-size: 14px;
     height: fit-content;
+    &.light{
+      background-color: #ECE7B4;
+      color: #32502E;
+      font-weight: bold;
+      border: 1px solid #d3d3d3;
+    }
     &.isShow{
       visibility: show;
     }

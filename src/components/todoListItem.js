@@ -40,7 +40,9 @@ function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
   };
 
   const cancleTodo = () => {
-    //바꾸기 전의 토글값과 내용값 가져와야함
+    setValue(todo.todo);
+    setCompleted(todo.isCompleted);
+    console.log(completed)
     setShowDefaultBtn(true);
     setShowUpdateBtn(false);
   }
@@ -50,11 +52,11 @@ function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
     <div className="todoListItem">
       <input type="checkbox" id={"checkbox" + todo.id} defaultChecked={completed} disabled={disabled} onChange={checkboxStatus}></input>
       <label htmlFor={"checkbox" + todo.id}></label>
-      <input type="text" value={value} readOnly={readOnly} onChange={onChange}></input>
+      <input className={(todo.isCompleted) ? "done" : ""} type="text" value={value} readOnly={readOnly} onChange={onChange}></input>
       <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={onUpdateMode}>수정</div>
       <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={deleteTodo}>삭제</div>
-      <div className={"btn" + (showUpdateBtn ? " isShow" : " isHide")} onClick={updateTodo}>완료</div>
-      <div className={"btn" + (showUpdateBtn ? " isShow" : " isHide")} onClick={cancleTodo}>취소</div>
+      <div className={"btn light" + (showUpdateBtn ? " isShow" : " isHide")} onClick={updateTodo}>완료</div>
+      <div className={"btn light" + (showUpdateBtn ? " isShow" : " isHide")} onClick={cancleTodo}>취소</div>
     </div>
   );
 }
