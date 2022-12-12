@@ -8,6 +8,14 @@ function AddTodo({onAddTodo}) {
     setText(e.target.value);
   }, []);
 
+  const onKeyUp = () => {
+    const keyCode = window.event.keyCode
+
+    if(keyCode === 13) {
+      addTodo();
+    }
+  }
+
   const addTodo = useCallback(() => {
     onAddTodo(text);
     setText('')
@@ -15,7 +23,7 @@ function AddTodo({onAddTodo}) {
 
   return (
     <div className="addTodo">
-      <div className="inputWrapper"><input type="text" value={text} onChange={onChange}></input></div>
+      <div className="inputWrapper"><input type="text" value={text} onChange={onChange} onKeyUp={onKeyUp}></input></div>
       <div className="btn" onClick={addTodo}>추가하기</div>
     </div>
   )

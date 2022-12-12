@@ -54,13 +54,11 @@ function Todo () {
   const updateTodo = (id, todo, isCompleted) => {
     Axios.put("/" + id, {
       todo, isCompleted
-    })
-    .then((res) => {
+    }).then((res) => {
       if(res.status === 200){
         getTodo();
       }
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err)
     })
   };
@@ -80,7 +78,7 @@ function Todo () {
     <div className="todo">
       <div className="header">TODO</div>
       <AddTodo onAddTodo={createTodo}></AddTodo>
-      <TodoList todos={todo} onGetTodo={getTodo} onUpdateTodo={updateTodo} onDeleteTodo={deleteTodo}></TodoList>
+      <TodoList todos={todo} onUpdateTodo={updateTodo} onDeleteTodo={deleteTodo}></TodoList>
     </div>
   )
 }

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styled/todoListItem.scss";
 
-function TodoListItem({ todo, onGetTodo, onUpdateTodo, onDeleteTodo }) {
+function TodoListItem({ todo, onUpdateTodo, onDeleteTodo }) {
   const [value, setValue] = useState(todo.todo);
   const [completed, setCompleted] = useState(todo.isCompleted)
   const [readOnly, setReadOnly] = useState(true);
@@ -14,6 +14,14 @@ function TodoListItem({ todo, onGetTodo, onUpdateTodo, onDeleteTodo }) {
   const onChange = (e) => {
     setValue(e.target.value);
   };
+
+  const onKeyUp = () => {
+    const keyCode = window.event.keyCode
+
+    if(keyCode === 13) {
+      updateTodo();
+    }
+  }
 
   const checkboxStatus = (e) => {
     setCompleted(e.target.checked)
@@ -40,14 +48,8 @@ function TodoListItem({ todo, onGetTodo, onUpdateTodo, onDeleteTodo }) {
   };
 
   const cancleTodo = () => {
-    console.log(todo.isCompleted)
-    setCompleted(todo.isCompleted) //checkbox
-    console.log(completed)
-
-    setValue(todo.todo); //text
-
-    // onGetTodo();
-
+    setValue(todo.todo);
+    setCompleted(todo.isCompleted)
     setReadOnly(!readOnly);
     setDisabled(!disabled);
     setShowDefaultBtn(true);
@@ -58,7 +60,7 @@ function TodoListItem({ todo, onGetTodo, onUpdateTodo, onDeleteTodo }) {
     <div className="todoListItem">
       <input type="checkbox" id={"checkbox" + todo.id} checked={completed} disabled={disabled} onChange={checkboxStatus}></input>
       <label htmlFor={"checkbox" + todo.id}></label>
-      <input className={(todo.isCompleted) ? "done" : ""} type="text" value={value} readOnly={readOnly} onChange={onChange}></input>
+      <input className={(todo.isCompleted) ? "done" : ""} type="text" value={value} readOnly={readOnly} onChange={onChange} onKeyUp={onKeyUp}></input>
       <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={onUpdateMode}>수정</div>
       <div className={"btn" + (showDefaultBtn ? " isShow" : " isHide")} onClick={deleteTodo}>삭제</div>
       <div className={"btn light" + (showUpdateBtn ? " isShow" : " isHide")} onClick={updateTodo}>완료</div>
