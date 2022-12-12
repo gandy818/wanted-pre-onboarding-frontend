@@ -26,7 +26,10 @@ function Main(){
         navigate("/todo")
       }
     }).catch((err) => {
-      console.log(err)
+      const statusCode = err.response.data.statusCode
+      if(statusCode === 404) {
+        alert("해당 사용자가 존재하지 않습니다.")
+      }
     })
   };
 
@@ -39,16 +42,17 @@ function Main(){
         window.location.reload();
       }
     }).catch((err) => {
-      console.log(err)
+      const statusCode = err.response.data.statusCode 
+      if(statusCode === 400) {
+        alert("동일한 이메일이 존재합니다.")
+      }
     })
   }
 
   return (
     <div className="main">
-      <div className="mainWrapper">
-        <SignIn onSignIn={signIn}></SignIn>
-        <SignUp onSignUp={signUp}></SignUp>
-      </div>
+      <SignIn onSignIn={signIn}></SignIn>
+      <SignUp onSignUp={signUp}></SignUp>
     </div>
   )
 }

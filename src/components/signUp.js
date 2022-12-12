@@ -6,7 +6,9 @@ function SignUp({onSignUp}) {
   const [signUpValid, setSignUpValid] = useState('');
 
   const userSignUp = () => {
-    onSignUp(email, password)
+    if(signUpValid) {
+      onSignUp(email, password)
+    }
   }
 
   const onChange = (type, e) => {
@@ -35,16 +37,16 @@ function SignUp({onSignUp}) {
       <div className="title">회원가입</div>
       <div className="subTitle">아직 회원이 아니시라면- </div>
       <div>
-        <div>이메일</div>
-        <div className="subTitle">이메일에는 @가 반드시 포함되어야 합니다.</div>
+        <div className="label">이메일</div>
         <div><input type="text" value={email} onChange={(e) => {onChange('email', e)}} onKeyUp={checkValid}></input></div>
       </div>
       <div>
-        <div>비밀번호</div>
-        <div className="subTitle">비밀번호는 8자 이상이여야합니다.</div>
+        <div className="label">비밀번호</div>
         <div><input type="password" value={password} onChange={(e) => {onChange('password', e)}} onKeyUp={checkValid}></input></div>
       </div>
       <div onClick={userSignUp} className={"btn" + (signUpValid ? " isActive" : " notActive")}>회원가입하기</div>
+      {/* <div className="subTitle">이메일에는 @가 반드시 포함되어야 합니다.</div> */}
+      {/* <div className="subTitle">비밀번호는 8자 이상이여야합니다.</div> */}
     </div> 
   )
 }
