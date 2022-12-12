@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios"
 import "../styled/main.scss"
 import { useNavigate } from "react-router-dom";
@@ -6,19 +6,8 @@ import SignIn from "../components/signIn";
 import SignUp from "../components/signUp";
 
 function Main(){
-  const [signInEmail, setSignInEmail] = useState('');
-  const [signInPw, setSignInPw] = useState('')
-  const [signInValid, setSignInValid] = useState(false);
-
-  const [signUpEmail, setSignUpEmail] = useState('');
-  const [signUpPw, setSignUpPw] = useState('');
-  const [signUpValid, setSignUpValid] = useState(false); 
-
-  const emailCheck = /\S+@\S/;
   const navigate = useNavigate();
   
-  
-
   const Axios = axios.create({
     baseURL: "http://localhost:8000/",
     // baseURL: "https://pre-onboarding-selection-task.shop/",
@@ -36,26 +25,23 @@ function Main(){
         alert("로그인 성공")
         navigate("/todo")
       }
-
     }).catch((err) => {
       console.log(err)
     })
   };
 
   const signUp = (email, password) => {
-    if (signUpValid) {
-      Axios.post("/auth/signup", {
-        email, password
-      }).then((res) => {
-        if(res.status === 201) {
-          alert("회원가입이 완료되었습니다.")
-          setSignUpEmail("")
-          setSignUpPw("")
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
-    }
+    Axios.post("/auth/signup", {
+      email, password
+    }).then((res) => {
+      if(res.status === 201) {
+        alert("회원가입이 완료되었습니다.")
+        // email = ""
+        // password = ""
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   return (
