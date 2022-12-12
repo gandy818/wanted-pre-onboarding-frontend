@@ -1,14 +1,18 @@
 # 원티드 프리온보딩 프론트엔드 선발 과제
 
-프로젝트의 실행 방법
+- 프로젝트의 실행 방법
 
-1. 프로젝트의 setup을 위해 `npm install`을 입력합니다.
-2. 설치 후 `npm start`를 입력하면 로컬서버 3000번에서 실행이 됩니다.
+  1. 프로젝트의 setup을 위해 `npm install`을 입력합니다.
+  2. 설치 후 `npm start`를 입력하면 로컬서버 3000번에서 실행이 됩니다.
+
+<br />
+
+- 배포주소
+
+https://gandy818.github.io/wanted-pre-onboarding-frontend/
 
 <br />
 <br />
-
-배포주소
 
 ## 1. 로그인 / 회원가입
 
