@@ -26,10 +26,16 @@ function SignUp({onSignUp}) {
 
   const checkValid = () => {
     const regEmailCheck = /\S+@\S/;
+    const keyCode = window.event.keyCode
 
     if(regEmailCheck.test(email) === true && password.length >= 8) {
+      if(keyCode === 13) {
+        userSignUp()
+      }
       return setSignUpValid(true);
     } else return setSignUpValid(false);
+
+
   };
 
   return (

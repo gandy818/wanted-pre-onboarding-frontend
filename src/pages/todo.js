@@ -18,7 +18,7 @@ function Todo () {
     }
   });
 
-  //토큰이 없을 시 메인화면으로 리다이렉트
+  //토큰이 없으면 /로 리다이렉트
   useEffect(() => {
     if(!localStorage.getItem("access_token")){
       navigate("/")

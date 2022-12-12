@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios"
 import "../styled/main.scss"
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,13 @@ function Main(){
     }
   });
 
+  //토큰이 존재하면 /todo로 리다이렉트
+  useEffect(() => {
+    if(localStorage.getItem("access_token")){
+      navigate("/todo")
+    }
+  }, []);
+
   const signIn = (email, password) => {
     Axios.post("/auth/signin", {
       email, password
@@ -27,7 +34,9 @@ function Main(){
       }
     }).catch((err) => {
       const statusCode = err.response.data.statusCode
-      if(statusCode === 404) {
+      if(statusCode === 401) {
+        alert("이메일과 비밀번호를 확인해주세요.")
+      }else if(statusCode === 404) {
         alert("해당 사용자가 존재하지 않습니다.")
       }
     })

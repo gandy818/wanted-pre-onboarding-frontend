@@ -28,8 +28,12 @@ function SignIn({onSignIn}) {
   //유효성검사
   const checkValid = () => {
     const regEmailCheck = /\S+@\S/;
+    const keyCode = window.event.keyCode
 
     if(regEmailCheck.test(email) === true && password.length >= 8) {
+      if(keyCode === 13) {
+        userSignIn()
+      }
       return setSignInValid(true);
     } else return setSignInValid(false);
 
