@@ -18,8 +18,6 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 
 ## 과제
 
----
-
 ### 1. 로그인 / 회원가입
 
 ---
@@ -29,6 +27,8 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 ✅ Assignment1
 
 사용자는 이메일과 비밀번호를 입력하여 회원가입을 할 수 있습니다.
+
+<br />
 
 ![signup](https://user-images.githubusercontent.com/67881881/207073845-4542732f-9ba5-4ead-ab5f-663cac274568.gif)
 
@@ -44,6 +44,8 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 ✅ Assignment2
 
 회원가입이 완료되면 해당 이메일과 비밀번호로 로그인을 할 수 있습니다.
+
+<br />
 
 ![signin](https://user-images.githubusercontent.com/67881881/207103299-600794b1-4604-48fd-8bf3-19ab140e612e.gif)
 
@@ -62,6 +64,8 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 
 로그인 여부에 따른 리다이렉트가 일어납니다.
 
+<br />
+
 ![redirect](https://user-images.githubusercontent.com/67881881/207103367-ba554aeb-eb5b-4df1-a34b-ddb9d194d428.gif)
 
 <br />
@@ -73,7 +77,7 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 <br />
 <br />
 
-## 2. 투두 리스트
+### 2. 투두 리스트
 
 ---
 
@@ -82,6 +86,8 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 ✅ Assignment4
 
 `/todo` 경로에 접근하면 투두리스트의 목록이 보여집니다.
+
+<br />
 
 ![addTodo](https://user-images.githubusercontent.com/67881881/207103396-d0802211-4a38-457a-996f-b52a45781a38.gif)
 
@@ -95,9 +101,12 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 
 <br />
 <br />
+
 ✅ Assignment5
 
 투두 리스트의 개별 아이템을 자유롭게 수정 할 수 있습니다.
+
+<br />
 
 ![updateTodo](https://user-images.githubusercontent.com/67881881/207103445-6f4ea53b-f034-41cc-bba1-dce4ab3b6b2e.gif)
 
@@ -120,8 +129,6 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 
 ## 사용한 라이브러리
 
----
-
 - Route-router-dom
 - Axios
 - Sass
@@ -130,8 +137,6 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 <br />
 
 ## 추가 구현 기능
-
----
 
 - API 호출 시 올바른 응답을 받지 못 하는 경우 받는 에러코드와 에러메세지를 활용하여 에러창을 띄웁니다. 에러가 나는 경우는 다음과 같습니다.
 
