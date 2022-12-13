@@ -14,9 +14,8 @@ npm start
 https://gandy818.github.io/wanted-pre-onboarding-frontend/
 
 <br />
-<br />
 
-## 과제
+## 과제 시연 영상
 
 ### 1. 로그인 / 회원가입
 
