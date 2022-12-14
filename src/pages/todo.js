@@ -33,7 +33,6 @@ function Todo() {
     Axios.get()
       .then((res) => {
         if (res.status === 200) {
-          setTodo([]);
           setTodo(res.data);
         }
       })

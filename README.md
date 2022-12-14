@@ -120,7 +120,7 @@ https://gandy818.github.io/wanted-pre-onboarding-frontend/
 
 - Route-router-dom
 - Axios
-- Sass
+- Scss
 
 <br />
 <br />
